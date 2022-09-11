@@ -1,0 +1,28 @@
+<div>
+  <%= image_tag @review.image, size:"200x150" %>
+</div>
+
+<div>
+  <%= @review.travel_comment %>
+</div>
+
+  <div id="evaluation<%= @review.id%>"></div>
+    <script>
+      $('#evaluation<%= @review.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      readOnly: true,
+      score: <%= @review.evaluation %>,
+      });
+    </script>
+  </div>
+  <div>
+  <%= @user.nickname %>
+  </div>
+
+  <% if @review.user == current_user %>
+    <td><%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}" %></td>
+  <% end %>
+

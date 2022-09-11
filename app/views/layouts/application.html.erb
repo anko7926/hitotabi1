@@ -15,11 +15,10 @@
 <nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #FF9872;">
   <div class="container">
 
-    <div class="navbar-header">
-      <%= link_to "ひとたび", root_path, class: "navbar-brand" %>
-    </div>
-
     <% if user_signed_in? %>
+    　<div class="navbar-header">
+        <%= link_to "ひとたび", public_reviews_path, class: "navbar-brand" %>
+    　</div>
 
       <span class="u h7 text-white strong">
         ようこそ！<%= current_user.nickname %>さん！
@@ -50,6 +49,10 @@
         </ul>
 
     <% else %>
+
+      <div class="navbar-header">
+      <%= link_to "ひとたび", root_path, class: "navbar-brand" %>
+      </div>
 
       <span class="u h7 text-white strong">
         ようこそ!　ひとたびへ

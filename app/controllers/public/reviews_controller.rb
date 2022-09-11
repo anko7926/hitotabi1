@@ -8,6 +8,7 @@ class Public::ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @user = current_user
   end
 
   def search
@@ -28,7 +29,7 @@ class Public::ReviewsController < ApplicationController
     @review.tag = Tag.first
     if @review.save
       redirect_to public_reviews_path(@review.id)
-      flash[:notice] = "商品を登録しました"
+      flash[:notice] = "投稿を完了しました"
     else
       flash[:notice] = "必要情報を入力してください"
       render :new
