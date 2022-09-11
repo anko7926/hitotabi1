@@ -6,4 +6,10 @@ class Review < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   has_one_attached :image
+
+  validates :image, presence: true
+  validates :title, presence: true
+  validates :travel_comment, presence: true
+  validates :evaluation, presence: true
+
 end

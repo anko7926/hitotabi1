@@ -8,13 +8,13 @@ Rails.application.routes.draw do
 
 root to: "public/homes#top"
 namespace :public do
-  resources :users do
+  resources :users
+  resources :comments
+  resources :reviews do
     collection do
-    get 'search'
+     get 'search'
     end
   end
-  resources :comments
-  resources :reviews
   resources :likes
   resources :genres
   resources :tags
@@ -27,14 +27,14 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
 sessions: "admin/sessions"
 }
 
-namespace :admin do
-  resources :users
-  resources :comments
-  resources :reviews
-  resources :likes
-  resources :genres
-  resources :tags
-  resources :admins
-end
+  namespace :admin do
+    resources :users
+    resources :comments
+    resources :reviews
+    resources :likes
+    resources :genres
+    resources :tags
+    resources :admins
+  end
 
 end

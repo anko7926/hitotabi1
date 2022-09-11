@@ -22,19 +22,18 @@
     <% if user_signed_in? %>
 
       <span class="u h7 text-white strong">
-        ようこそ！<%= current_user.last_name %>
-        <%= current_user.first_name %>さん！
+        ようこそ！<%= current_user.nickname %>さん！
       </span>
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <%#= link_to "いいねした投稿を見る"  class: "nav-link" %>
+          <%= link_to "いいねした投稿を見る", public_likes_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%#= link_to "レビューを投稿する" class: "nav-link" %>
+          <%= link_to "レビューを投稿する", new_public_review_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%#= link_to "ログアウト" method: :delete, class: "nav-link" %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
       </ul>
 
@@ -42,13 +41,11 @@
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <%#= link_to "ユーザー一覧" class: "nav-link" %>
+            <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
           </li>
+
           <li class="nav-item">
-            <%#= link_to "投稿一覧" class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%#= link_to "ログアウト" method: :delete, class: "nav-link" %>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
           </li>
         </ul>
 
@@ -60,13 +57,13 @@
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <%= link_to "ゲストログイン", public_comments_path, class: "nav-link" %>
+          <%#= link_to "ゲストログイン" class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%#= link_to "新規登録" class: "nav-link" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%#= link_to "ログイン" class: "nav-link" %>
+          <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
         </li>
       </ul>
 
