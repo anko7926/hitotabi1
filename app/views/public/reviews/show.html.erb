@@ -21,8 +21,39 @@
   <div>
   <%= @user.nickname %>
   </div>
+  <td class=<%= "like-" + @review.id.to_s %> >
+    <%= render "public/likes/like", review: @review %>
+  </td>
 
   <% if @review.user == current_user %>
     <td><%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}" %></td>
   <% end %>
+
+  <table>
+  <tbody>
+      <% @review.comments.each do |comment| %>
+      <tr>
+        <td>
+            <%= comment.user.nickname %>
+        </td>
+        <td><%= comment.impression_comment %></td>
+        <td>
+          <% if comment.user == current_user %>
+            <div id="comments-index">
+            <%= link_to "Destroy", public_review_comment_path(@review, comment), method: :delete, class: "btn btn-danger pull-right" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<div id="comments-area">
+  <%= form_with(model:[@review, @comment], url: public_review_comments_path(@review), local: true) do |f| %>
+    <%= f.text_area :impression_comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
+    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+  <% end %>
+</div>
+
 

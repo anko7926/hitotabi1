@@ -9,10 +9,11 @@ class Public::ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @user = current_user
+    @comment = Comment.new
   end
 
   def search
-    @results = @q.result.includes(:review)
+    @results = @q.result
   end
 
   def new

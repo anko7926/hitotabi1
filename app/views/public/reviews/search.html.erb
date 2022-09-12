@@ -1,6 +1,6 @@
 <h1>検索結果</h1>
 <% if @results.length != 0 %>
-  <% @resource.each do |result| %>
+  <% @results.each do |result| %>
     <%= result.title %>
     <%= result.travel_comment %>
     <%= result.user.nickname %>

@@ -9,15 +9,17 @@ Rails.application.routes.draw do
 root to: "public/homes#top"
 namespace :public do
   resources :users
-  resources :comments
+
   resources :reviews do
+    resource :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
     collection do
      get 'search'
     end
   end
-  resources :likes
   resources :genres
   resources :tags
+  resources :likes, only: [:index]
 end
 
 
