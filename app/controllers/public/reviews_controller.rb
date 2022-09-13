@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
     before_action :set_q, only: [:index, :search]
+    before_action :set_user, only: [:likes]
 
    def index
     @reviews= Review.all

@@ -7,9 +7,13 @@ Rails.application.routes.draw do
 }
 
 root to: "public/homes#top"
+post 'public/homes/guest_sign_in', to: 'public/homes#new_guest'
 namespace :public do
-  resources :users
-
+  resources :users do
+    member do
+    get :likes
+    end
+  end
   resources :reviews do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

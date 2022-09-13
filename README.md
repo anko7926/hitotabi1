@@ -1,24 +1,31 @@
-# README
+ひとたび
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+<一人旅に行きたいけど、そこまで勇気が出ない人の為の後押しするレビューサイト>
 
-Things you may want to cover:
+### テーマを選んだ理由
+<自分自身、一人旅に興味はあるが遠い所に一人で行く事が少し抵抗があるので、どういう場所がオススメなのか実際に行った人のレビューがあると生きやすいなと感じたからです。>
 
-* Ruby version
+### ターゲットユーザ
+<一人旅に興味がある方、旅好きな方>
 
-* System dependencies
+### 主な利用シーン
+<旅行>
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
+## 使用素材
 
-* How to run the test suite
+　考え中です。
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。

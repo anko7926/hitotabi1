@@ -1,8 +1,11 @@
 <h1>投稿を検索</h1>
-<%= search_form_for @q, url: search_public_reviews_path do |f| %>
-  <%= f.text_field :title_or_travel_comment_cont, class: "search-form", placeholder: "キーワード検索" %>
-   <%= f.submit "検索", class: "search-btn" %>
-<% end %>
+  <%= search_form_for @q, url: search_public_reviews_path do |f| %>
+    <%= f.text_field :title_or_travel_comment_cont, class: "search-form", placeholder: "キーワード検索" %>
+    <%= f.submit "検索", class: "search-btn" %>
+  <% end %>
+  <li class="nav-item">
+    <%= link_to "いいねした投稿を見る",likes_public_user_path(@user), class: "nav-link" %>
+  </li>
 
         <div class = "new-arrival">
           <h2>レビュー評価が高い場所！</h2>
