@@ -1,4 +1,11 @@
 class Public::LikesController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    user = User.find(params[:user_id])
+    @likes = user.likes
+  end
+
   def create
      review = Review.find(params[:review_id])
      @like = current_user.likes.new(review_id: review.id)

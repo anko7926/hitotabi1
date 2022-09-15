@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_11_115858) do
+ActiveRecord::Schema.define(version: 2022_09_14_111724) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,15 +73,23 @@ ActiveRecord::Schema.define(version: 2022_09_11_115858) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "genre_id", null: false
+  create_table "review_tags", force: :cascade do |t|
+    t.integer "review_id", null: false
     t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["review_id"], name: "index_review_tags_on_review_id"
+    t.index ["tag_id"], name: "index_review_tags_on_tag_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title", null: false
     t.text "travel_comment", null: false
     t.float "evaluation", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -108,4 +116,7 @@ ActiveRecord::Schema.define(version: 2022_09_11_115858) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "review_tags", "reviews"
+  add_foreign_key "review_tags", "tags"
+  add_foreign_key "reviews", "users"
 end

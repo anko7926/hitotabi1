@@ -4,8 +4,20 @@
     <%= f.submit "検索", class: "search-btn" %>
   <% end %>
   <li class="nav-item">
-    <%= link_to "いいねした投稿を見る",likes_public_user_path(@user), class: "nav-link" %>
+    <%= link_to "いいねした投稿を見る", public_user_likes_path(@user), class: "nav-link" %>
   </li>
+  <h2>Post Actions --></h2>
+<%= link_to 'New Post', new_public_review_path %>
+
+<h2>Tag Actions --></h2>
+<%= link_to 'Tags List', public_tags_path %>
+
+<h2>Posts --></h2>
+<% @reviews.each do |review| %>
+  <div>
+    <%= link_to review.title, public_reviews_path(review) %>
+  </div>
+<% end %>
 
         <div class = "new-arrival">
           <h2>レビュー評価が高い場所！</h2>
@@ -14,7 +26,8 @@
               <%= link_to public_review_path(review), class:"text-dark"  do %>
                 <div class="mr-3 mt-3">
                   <%= image_tag review.image, size:"200x150" %>
-                    <p class="mt-3 mb-1"><strong><%= review.travel_comment %></strong></p>
+                    <p><%= review.title %></p>
+                    <p class="mt-3 mb-1"><%= review.travel_comment %></p>
                     <p class="mb-5">
                       <div id="evaluation<%= review.id%>"></div>
                       <script>

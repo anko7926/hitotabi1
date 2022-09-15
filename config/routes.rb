@@ -7,30 +7,31 @@ Rails.application.routes.draw do
 }
 
 root to: "public/homes#top"
-post 'public/homes/guest_sign_in', to: 'public/homes#new_guest'
+
 namespace :public do
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
+  end
   resources :users do
-    member do
-    get :likes
-    end
+    resources :likes, only: [:index]
   end
   resources :reviews do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do
-     get 'search'
+      get :search
     end
   end
   resources :genres
   resources :tags
-  resources :likes, only: [:index]
+
 end
 
 
 # 管理者用
 # URL /admin/sign_in ...
 devise_for :admin, skip: [:registrations, :passwords] , controllers: {
-sessions: "admin/sessions"
+  sessions: "admin/sessions"
 }
 
   namespace :admin do

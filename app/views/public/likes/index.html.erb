@@ -1,0 +1,30 @@
+<% @likes.reverse_each do |like| %>
+  <div>
+    <%= image_tag like.review.image, size:"200x150" %>
+  </div>
+  <div>
+    <%= like.review.title %>
+  </div>
+  <div>
+    <%= like.review.travel_comment %>
+  </div>
+  <div id="evaluation<%= like.review.id%>"></div>
+  <script>
+    $('#evaluation<%= like.review.id %>').empty();
+    $('#evaluation<%= like.review.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    starHalf  : '<%= asset_path('star-half.png') %>',
+    readOnly: true,
+    score: <%= like.review.evaluation %>,
+    });
+  </script>
+  <div>
+     <%= like.user.nickname %>
+  </div>
+<% end %>
+<% if @likes.empty? %>
+  <h2>お気に入りはありません</h2>
+<% end %>
+<%= link_to 'トップページに戻る', public_reviews_path %>

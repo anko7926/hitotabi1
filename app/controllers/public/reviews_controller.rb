@@ -4,13 +4,15 @@ class Public::ReviewsController < ApplicationController
 
    def index
     @reviews= Review.all
-    @user= current_user
+    @user = current_user
    end
 
   def show
     @review = Review.find(params[:id])
+    @review_tags = @review.tags
     @user = current_user
     @comment = Comment.new
+
   end
 
   def search
@@ -19,6 +21,7 @@ class Public::ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+
   end
 
   def create
@@ -26,10 +29,11 @@ class Public::ReviewsController < ApplicationController
     @review.user = current_user
 
     ######### ジャンルが作成されたらフォームにジャンルを選択する機能を追加する。
-    @review.genre = Genre.first
+    #@review.genre = Genre.first
     ######### タグが作成されたらフォームにタグを選択する機能を追加する。
-    @review.tag = Tag.first
+    #@review.tag = Tag.first
     if @review.save
+      @review.save_tags(params[:review][:tag_name])
       redirect_to public_reviews_path(@review.id)
       flash[:notice] = "投稿を完了しました"
     else
@@ -37,6 +41,21 @@ class Public::ReviewsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+   def update
+     @review = Review.find(params[:id])
+     if @review.update(review_params)
+       @review.save_tags(params[:review][:tag_name])
+       redirect_to public_review_path(@review)
+       flash[:notice_update] = "ジャンル情報を更新しました！"
+     else
+       render :edit
+     end
+   end
 
   private
 
