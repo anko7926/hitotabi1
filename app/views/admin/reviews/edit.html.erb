@@ -1,0 +1,38 @@
+<div class="container">
+    <h4 class="text-center", style="background-color:#eee; width:150px; margin:30px 0 30px 100px;">編集</h4>
+    <%= form_with model: @review, url: admin_review_path(@review), method: :patch, local: true  do |f| %>
+
+    <%= render "public/shared/error_messages", resource: @review %>
+    <div class="row">
+      <div class="col-md-8 m-auto">
+        <div class="form-group">
+          <%= image_tag @review.image, size:"150x100" %>
+        </div>
+
+        <div class="form-group">
+        <%= f.label :タイトル, style:"margin-right:86px;" %>
+        <%= f.text_field :title, placeholder: "タイトル" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :コメント, style:"vertical-align:top; margin-top:5px; margin-right:70px;" %>
+        <%= f.text_area :travel_comment, placeholder: "コメント" %>
+      </div>
+
+       <div class="actions row">
+        <%= f.submit "保存する",class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
+      </div>
+      <div class="actions row">
+        <%= link_to "内容を削除", admin_review_path(@review), method: :delete, class: "btn btn-danger", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
+      </div>
+
+       <% @review.comments.each do |comment| %>
+        <div class="form-group">
+          <%= f.label :コメント, style:"margin-right:86px;" %>
+          <%= f.label :ニックネーム, style:"margin-right:86px;" %>
+            <%= comment.user.nickname %>
+          <%= f.label :コメント一覧, style:"margin-right:86px;" %>
+            <%= comment.impression_comment %>
+        </div>
+        <%= link_to "コメント削除", public_review_comment_path(@review, comment), method: :delete, class: "btn btn-danger pull-right" %>
+      <% end %>
+    <% end %>

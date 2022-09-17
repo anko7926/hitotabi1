@@ -1,5 +1,5 @@
 class Public::HomesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def top
     @reviews = Review.all.order("created_at DESC").first(4)

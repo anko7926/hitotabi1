@@ -12,7 +12,7 @@
 
       <div>
         <div class = "new-arrival">
-          <h2>レビュー評価が高い場所！</h2>
+          <h2>レビュー</h2>
           <div class = "new-arrival-contents" style="display:flex; flex-wrap:wrap;">
             <% @reviews.each do |review| %>
                 <div class="mr-3 mt-3">
@@ -31,6 +31,7 @@
                         score: <%= review.evaluation %>,
                         });
                       </script>
+                      <p class="mb-5"><strong><%= review.user.nickname %></strong></p>
                     </p>
                 </div>
             <% end %>

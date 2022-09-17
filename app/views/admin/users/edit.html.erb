@@ -1,0 +1,30 @@
+<div class="container">
+    <h4 class="text-center", style="background-color:#eee; width:150px; margin:30px 0 30px 100px;">ユーザー編集</h4>
+    <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch, local: true  do |f| %>
+
+    <%= render "public/shared/error_messages", resource: @user %>
+    <div class="row">
+      <div class="col-md-8 m-auto">
+        <div class="form-group">
+           <%= f.label :ニックネーム, style:"margin-right:86px;" %>
+          <%= @user.nickname %>
+        </div>
+      <div class="row">
+          <%= f.label :会員ステータス, class: "ml-3" %>
+          <div class="form-check ml-4">
+            <%= f.radio_button :members_status, :false %>
+            <%= f.label :members_status, "有効会員" %>
+            <%= f.radio_button :members_status, :true %>
+            <%= f.label :members_status, "退会済み" %>
+          </div>
+      </div>
+      <div>
+        <%= f.submit "保存する",class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
+      </div>
+      <div>
+        <%= link_to '投稿一覧', admin_user_path(@user), class: "btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

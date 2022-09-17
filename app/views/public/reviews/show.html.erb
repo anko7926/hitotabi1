@@ -1,16 +1,5 @@
-<h2>Actions --></h2>
-<%= link_to 'Top', public_reviews_path %>
-<%= link_to 'Edit', edit_public_review_path(@review) %>
-<%= link_to 'Delete', public_review_path(@review), method: :delete, data: {confirm: '削除しますか？'} %>
 
-<h3>Title --></h3>
-<%= @review.title %>
-
-<h3>Content --></h3>
-<%# simple_formatは、pタグで囲み、改行コードをbrに変換する %>
-<%= simple_format(@review.travel_comment) %>
-
-<h3>Tags --></h3>
+<h3>タグ名</h3>
 <ul>
   <%# 該当のPostからアソシエーションでタグを取得 %>
   <% @review.tags.each do |tag| %>
@@ -31,6 +20,7 @@
 
   <div id="evaluation<%= @review.id%>"></div>
     <script>
+      $('#evaluation<%= @review.id %>').empty();
       $('#evaluation<%= @review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',

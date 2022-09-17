@@ -1,0 +1,24 @@
+ <% @reviews.each do |review| %>
+   <%= link_to edit_admin_review_path(review), class:"text-dark"  do %>
+     <div class="mr-3 mt-3">
+       <%= image_tag review.image, size:"200x150" %>
+       <p><%= review.title %></p>
+       <p class="mt-3 mb-1"><%= review.travel_comment %></p>
+       <p class="mb-5">
+         <div id="evaluation<%= review.id%>"></div>
+         <script>
+           $('#evaluation<%= review.id %>').empty();
+           $('#evaluation<%= review.id%>').raty({
+           size      : 36,
+           starOff   : '<%= asset_path('star-off.png') %>',
+           starOn    : '<%= asset_path('star-on.png') %>',
+           starHalf  : '<%= asset_path('star-half.png') %>',
+           readOnly: true,
+           score: <%= review.evaluation %>,
+           });
+         </script>
+        </p>
+        <p class="mb-5"><strong><%= @user.nickname %></strong></p>
+      </div>
+    <% end %>
+  <% end %>

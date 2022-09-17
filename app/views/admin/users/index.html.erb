@@ -16,7 +16,7 @@
 							<tr>
 								<td><%= user.id %></td>
 								<td style>
-									<%= link_to admin_user_path(user.id), style: "color: #000; text-decoration: underline;" do %>
+									<%= link_to edit_admin_user_path(user), style: "color: #000; text-decoration: underline;" do %>
 									<%= user.last_name %><%= user.first_name %><%= user.nickname %>
 									<% end %>
 								</td>

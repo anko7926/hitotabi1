@@ -4,7 +4,6 @@ class Public::ReviewsController < ApplicationController
 
    def index
     @reviews= Review.all
-    @user = current_user
    end
 
   def show

@@ -1,9 +1,0 @@
-<%= review.label :title, 'タイトル' %><br>
-<%= review.text_field :title %><br>
-<%= review.label :travel_comment, 'コメント' %><br>
-<%= review.text_area :travel_comment %><br>
-<%= review.label :tag, 'タグ' %><br>
-<%# Edit用に@post.tags.pluck(:name)でタグの配列を取得 %>
-<%= review.text_field :tag, value: @review.tags.pluck(:tag_name) %><br>
-<small>スペースで区切ることで複数指定できます。</small><br>
-<%= review.submit %>
