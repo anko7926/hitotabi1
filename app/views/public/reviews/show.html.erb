@@ -1,4 +1,4 @@
-
+<%= link_to 'Topページへ', public_reviews_path %>
 <h3>タグ名</h3>
 <ul>
   <%# 該当のPostからアソシエーションでタグを取得 %>
@@ -34,9 +34,9 @@
   <div>
   <%= @user.nickname %>
   </div>
-  <td class=<%= "like-" + @review.id.to_s %> >
+  <div id="like-<%= @review.id %>">
     <%= render "public/likes/like", review: @review %>
-  </td>
+  </div>
 
   <% if @review.user == current_user %>
     <td><%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}" %></td>

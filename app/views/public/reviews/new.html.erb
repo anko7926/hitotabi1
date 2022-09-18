@@ -37,9 +37,7 @@
           });
         </script>
 
-        <h2>Actions --></h2>
-          <%= link_to 'Top', public_reviews_path %>
-        <h2>Post --></h2>
+        <h2>タグ作成</h2>
           <%= f.label :tag_name, 'タグ' %><br>
           <%# Edit用に@post.tags.pluck(:name)でタグの配列を取得 %>
           <%= f.text_field :tag_name, value: @review.tags.pluck(:tag_name) %><br>

@@ -15,39 +15,46 @@
   <h4>(タグ一覧)</h4>
     <% @reviews.each do |review| %>
       <div>
-        <%= link_to review.title, public_reviews_path(review) %>
+        <%= link_to review.title, public_review_path(review) %>
       </div>
     <% end %>
 
-      <h2>投稿一覧</h2>
-
-        <% @reviews.each do |review| %>
-        <div class="container py-4" id="works">
-          <%= link_to public_review_path(review), class:"text-dark"  do %>
-            <div class="card-deck">
-              <div class="card">
-                <%= image_tag review.image, size:"200x150" %>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= review.title %></h5>
-                    <p class="card-text"><%= review.travel_comment %></p>
-                    <div id="evaluation<%= review.id%>"></div>
-                    <script>
-                      $('#evaluation<%= review.id %>').empty();
-                      $('#evaluation<%= review.id%>').raty({
-                      size      : 36,
-                      starOff   : '<%= asset_path('star-off.png') %>',
-                      starOn    : '<%= asset_path('star-on.png') %>',
-                      starHalf  : '<%= asset_path('star-half.png') %>',
-                      readOnly: true,
-                      score: <%= review.evaluation %>,
-                      });
-                    </script>
-                    <p class="mb-5"><strong><%= review.user.nickname %></strong></p>
+    <h2>投稿一覧</h2>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <% @reviews.each do |review| %>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <%= link_to public_review_path(review), class:"text-dark"  do %>
+                  <div class="card-deck">
+                    <div class="card">
+                      <%= image_tag review.image, size:"345x200" %>
+                      <div class="card-body">
+                        <h5 class="card-title"><%= review.title %></h5>
+                        <p class="card-text"><%= review.travel_comment %></p>
+                        <div id="evaluation<%= review.id%>"></div>
+                        <script>
+                          $('#evaluation<%= review.id %>').empty();
+                          $('#evaluation<%= review.id%>').raty({
+                          size      : 36,
+                          starOff   : '<%= asset_path('star-off.png') %>',
+                          starOn    : '<%= asset_path('star-on.png') %>',
+                          starHalf  : '<%= asset_path('star-half.png') %>',
+                          readOnly: true,
+                          score: <%= review.evaluation %>,
+                          });
+                        </script>
+                        <p class="mb-5"><strong><%= review.user.nickname %></strong></p>
+                      </div>
+                    </div>
                   </div>
-                  </div>
+                <% end %>
               </div>
             </div>
           <% end %>
-        <% end %>
       </div>
+    </div>
+
+
 
