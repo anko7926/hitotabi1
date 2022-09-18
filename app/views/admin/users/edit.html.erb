@@ -10,6 +10,7 @@
           <%= @user.nickname %>
         </div>
       <div class="row">
+        <% if @user.email != "guest@example.com" %>
           <%= f.label :会員ステータス, class: "ml-3" %>
           <div class="form-check ml-4">
             <%= f.radio_button :members_status, :false %>
@@ -17,6 +18,7 @@
             <%= f.radio_button :members_status, :true %>
             <%= f.label :members_status, "退会済み" %>
           </div>
+        <% end %>
       </div>
       <div>
         <%= f.submit "保存する",class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>

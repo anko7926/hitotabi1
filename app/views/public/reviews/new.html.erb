@@ -41,7 +41,6 @@
           <%= f.label :tag_name, 'タグ' %><br>
           <%# Edit用に@post.tags.pluck(:name)でタグの配列を取得 %>
           <%= f.text_field :tag_name, value: @review.tags.pluck(:tag_name) %><br>
-          <small>スペースで区切ることで複数指定できます。</small><br>
 
           <div class="actions row">
             <%= f.hidden_field :id, :value => @review.id %>
