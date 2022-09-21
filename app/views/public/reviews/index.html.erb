@@ -1,60 +1,58 @@
 <h1>投稿を検索</h1>
-  <%= search_form_for @q, url: search_public_reviews_path do |f| %>
-    <%= f.text_field :title_or_travel_comment_cont, class: "search-form", placeholder: "キーワード検索" %>
-    <%= f.submit "検索", class: "search-btn" %>
-  <% end %>
+<%= search_form_for @q, url: search_public_reviews_path do |f| %>
+  <%= f.text_field :title_or_travel_comment_cont, class: "search-form", placeholder: "キーワード検索" %>
+  <%= f.submit "検索", class: "search-btn" %>
+<% end %>
+  
+<span class="r-2">
+  <button type="button" class="btn btn btn-outline-info btn-sm", style="margin-bottom:100px; margin-left:300px;">
+    <%= link_to 'タグ一覧', public_tags_path, class: "nav-link" %>
+  </button>
+</span>
+    
+<span class="r-2">
+  <button type="button" class="btn btn btn-outline-info btn-sm", style="margin-bottom:100px; margin-left:80px;">
+    <%= link_to "いいねした投稿を見る", public_user_likes_path(current_user), class: "nav-link" %>
+  </button>
+</span>
 
-  <div class="text-right">
-    <button type="button" class="btn btn-outline-secondary btn-sm">
-      <%= link_to "いいねした投稿を見る", public_user_likes_path(current_user), class: "nav-link" %>
-    </button>
-  </div>
-
-  <h4>(タグリスト)</h4>
-    <%= link_to 'Tags List', public_tags_path %>
-  <h4>(タグ一覧)</h4>
-    <% @reviews.each do |review| %>
-      <div>
-        <%= link_to review.title, public_review_path(review) %>
-      </div>
-    <% end %>
-
-    <h2>投稿一覧</h2>
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <% @reviews.each do |review| %>
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <%= link_to public_review_path(review), class:"text-dark"  do %>
-                  <div class="card-deck">
-                    <div class="card">
-                      <%= image_tag review.image, size:"345x200" %>
-                      <div class="card-body">
-                        <h5 class="card-title"><%= review.title %></h5>
-                        <p class="card-text"><%= review.travel_comment %></p>
-                        <div id="evaluation<%= review.id%>"></div>
-                        <script>
-                          $('#evaluation<%= review.id %>').empty();
-                          $('#evaluation<%= review.id%>').raty({
-                          size      : 36,
-                          starOff   : '<%= asset_path('star-off.png') %>',
-                          starOn    : '<%= asset_path('star-on.png') %>',
-                          starHalf  : '<%= asset_path('star-half.png') %>',
-                          readOnly: true,
-                          score: <%= review.evaluation %>,
-                          });
-                        </script>
-                        <p class="mb-5"><strong><%= review.user.nickname %></strong></p>
-                      </div>
-                    </div>
+<h2>投稿一覧</h2>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @reviews.each do |review| %>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <%= link_to public_review_path(review), class:"text-dark"  do %>
+              <div class="card-deck">
+                <div class="card">
+                  <%= image_tag review.image, size:"345x200" %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= review.title %></h5>
+                    <p class="card-text"><%= review.travel_comment %></p>
+                    <div id="evaluation<%= review.id%>"></div>
+                    <script>
+                      $('#evaluation<%= review.id %>').empty();
+                      $('#evaluation<%= review.id%>').raty({
+                      size      : 36,
+                      starOff   : '<%= asset_path('star-off.png') %>',
+                      starOn    : '<%= asset_path('star-on.png') %>',
+                      starHalf  : '<%= asset_path('star-half.png') %>',
+                      readOnly: true,
+                      score: <%= review.evaluation %>,
+                      });
+                    </script>
+                    <p class="mb-5"><strong><%= review.user.nickname %></strong></p>
                   </div>
-                <% end %>
+                </div>
               </div>
-            </div>
-          <% end %>
-      </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
+  </div>
+</div>
 
 
 
