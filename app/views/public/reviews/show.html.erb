@@ -1,72 +1,90 @@
-<%= link_to 'Topページへ', public_reviews_path %>
-<h3>タグ名</h3>
-<ul>
-  <%# 該当のPostからアソシエーションでタグを取得 %>
-  <% @review.tags.each do |tag| %>
-    <%# タグを展開 %>
-    <li>
-      <%= link_to tag.tag_name, public_tag_path(tag) %>
-    </li>
-  <% end %>
-</ul>
+<body>
+  <button type="button" class="btn btn btn-outline-info btn-sm", style="margin-top:30px; margin-left:150px;">
+    <%= link_to 'Topページへ', public_reviews_path, class: "nav-link" %>
+  </button>
+  <h3 class="", style="margin-top:50px; margin-left:150px;">タグ名</h3>
+  <ul>
+    <%# 該当のPostからアソシエーションでタグを取得 %>
+    <% @review.tags.each do |tag| %>
+      <%# タグを展開 %>
+      <li class="", style="margin-top:50px; margin-left:150px;">
+        <%= link_to tag.tag_name, public_tag_path(tag) %>
+      </li>
+    <% end %>
+  </ul>
 
-<div>
-  <%= image_tag @review.image, size:"200x150" %>
-</div>
+  <h2 class="", style="font-weight:bold;">投稿</h2>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10", style= "margin-left:90px;">
+            <%= link_to public_review_path(@review), class:"text-dark"  do %>
+              <div class="card-deck">
+                <div class="card">
+                  <%= image_tag @review.image, size:"920x500" %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= @review.title %></h5>
+                    <p class="card-text"><%= @review.travel_comment %></p>
+                    <div id="evaluation<%= @review.id%>"></div>
+                    <script>
+                      $('#evaluation<%= @review.id %>').empty();
+                      $('#evaluation<%= @review.id%>').raty({
+                      size      : 36,
+                      starOff   : '<%= asset_path('star-off.png') %>',
+                      starOn    : '<%= asset_path('star-on.png') %>',
+                      starHalf  : '<%= asset_path('star-half.png') %>',
+                      readOnly: true,
+                      score: <%= @review.evaluation %>,
+                      });
+                    </script>
+                    <p class="mb-5"><strong><%= @review.user.nickname %></strong></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div>
-  <%= @review.travel_comment %>
-</div>
-
-  <div id="evaluation<%= @review.id%>"></div>
-    <script>
-      $('#evaluation<%= @review.id %>').empty();
-      $('#evaluation<%= @review.id%>').raty({
-      size      : 36,
-      starOff   : '<%= asset_path('star-off.png') %>',
-      starOn    : '<%= asset_path('star-on.png') %>',
-      starHalf  : '<%= asset_path('star-half.png') %>',
-      readOnly: true,
-      score: <%= @review.evaluation %>,
-      });
-    </script>
-  </div>
-  <div>
-  <%= @user.nickname %>
-  </div>
-  <div id="like-<%= @review.id %>">
-    <%= render "public/likes/like", review: @review %>
-  </div>
-
-  <% if @review.user == current_user %>
-    <td><%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}" %></td>
-  <% end %>
-
-  <table>
-  <tbody>
-      <% @review.comments.each do |comment| %>
-      <tr>
+    <div id="like-<%= @review.id %>">
+      <%= render "public/likes/like", review: @review %>
+    </div>
+  
+    <h2 class="", style="font-weight:bold;">コメント一覧</h2>
+      <% if @review.user == current_user %>
         <td>
-            <%= comment.user.nickname %>
+          <%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}" %>
         </td>
-        <td><%= comment.impression_comment %></td>
-        <td>
-          <% if comment.user == current_user %>
-            <div id="comments-index">
-            <%= link_to "Destroy", public_review_comment_path(@review, comment), method: :delete, class: "btn btn-danger pull-right" %>
-            </div>
-          <% end %>
-        </td>
-      </tr>
       <% end %>
-  </tbody>
-</table>
 
-<div id="comments-area">
-  <%= form_with(model:[@review, @comment], url: public_review_comments_path(@review), local: true) do |f| %>
-    <%= f.text_area :impression_comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
-    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-  <% end %>
-</div>
+      <table>
+        <tbody>
+          <% @review.comments.each do |comment| %>
+            <tr>
+              <td>
+                <%= comment.user.nickname %>
+              </td>
+              <td class="", style="padding-left:50px;">
+                <%= comment.impression_comment %>
+              </td>
+              <td>
+                <% if comment.user == current_user %>
+                  <div id="comments-index">
+                    <%= link_to "Destroy", public_review_comment_path(@review, comment), method: :delete, class: "btn btn-danger pull-right" %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
+      <div id="comments-area">
+        <%= form_with(model:[@review, @comment], url: public_review_comments_path(@review), local: true) do |f| %>
+          <%= f.text_area :impression_comment, rows:'5',placeholder: "コメントをここに", class: "w-50 comment-textarea", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
+          <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+        <% end %>
+      </div>
+ </body>
 

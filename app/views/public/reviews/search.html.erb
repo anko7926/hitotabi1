@@ -1,33 +1,44 @@
-<h1>検索結果</h1>
-<% if @results.length != 0 %>
-  <% @results.each do |result| %>
-    <%= link_to public_review_path(result), class:"text-dark"  do %>
-      <div class="mr-3 mt-3">
-        <%= image_tag result.image, size:"200x150" %>
-        <p class="mt-3 mb-1"><strong><%= result.travel_comment %></strong></p>
-        <p class="mb-5">
-          <div id="evaluation<%= result.id%>"></div>
-          <script>
-            $('#evaluation<%= result.id %>').empty();
-            $('#evaluation<%= result.id%>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf  : '<%= asset_path('star-half.png') %>',
-            readOnly: true,
-            score: <%= result.evaluation %>,
-            });
-          </script>
-        </p>
-        <p class="mb-5"><strong><%= result.user.nickname %></strong></p>
+<h2 class="", style="font-weight:bold;">検索結果</h2>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <% if @results.length != 0 %>
+          <% @results.each do |result| %>
+          
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <%= link_to public_review_path(result), class:"text-dark"  do %>
+                  <div class="card-deck">
+                    <div class="card">
+                      <%= image_tag result.image, size:"345x200" %>
+                      <div class="card-body">
+                        <h5 class="card-title"><%= result.title %></h5>
+                        <p class="card-text"><%= result.travel_comment %></p>
+                        <div id="evaluation<%= result.id%>"></div>
+                        <script>
+                          $('#evaluation<%= result.id %>').empty();
+                          $('#evaluation<%= result.id%>').raty({
+                          size      : 36,
+                          starOff   : '<%= asset_path('star-off.png') %>',
+                          starOn    : '<%= asset_path('star-on.png') %>',
+                          starHalf  : '<%= asset_path('star-half.png') %>',
+                          readOnly: true,
+                          score: <%= result.evaluation %>,
+                          });
+                        </script>
+                        <p class="mb-5"><strong><%= result.user.nickname %></strong></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>  
+              </div>
+            </div>
+          <% end %>
+         <% else %>
+           検索結果はありません
+        <% end %>
       </div>
-    <% end %>
-  <% end %>
-    <% else %>
-    検索結果はありません
-<% end %>
-
-
-
+    </div>
+  </div>
 
 

@@ -1,6 +1,7 @@
 class Public::ReviewsController < ApplicationController
     before_action :set_q, only: [:index, :search]
     before_action :set_user, only: [:likes]
+    protect_from_forgery
 
    def index
     @reviews= Review.all

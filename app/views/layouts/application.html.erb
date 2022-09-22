@@ -2,40 +2,40 @@
 <html>
   <head>
     <title>Hitotabi1</title>
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <%= csrf_meta_tags %>
-      <%= csp_meta_tag %>
-      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    </head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-    <body>
-      <header>
-        <nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #FF9872;">
-          <div class="container">
-            <% if user_signed_in? %>
-              <div class="navbar-header">
-                <%= link_to "ひとたび", public_reviews_path, class: "navbar-brand" %>
-              </div>
-              <span class="u h7 text-white strong">
-                ようこそ！<%= current_user.nickname %>さん！
-              </span>
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <button type="button" class="btn btn-warning btn-sm", style="margin-right:30px">
-                    <%= link_to "レビューを投稿する", new_public_review_path, class: "nav-link" %>
-                  </button>
-                </li>
-                <li class="nav-item">
-                  <button type="button" class="btn btn-warning btn-sm", style="margin-right:30px">
-                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                  </button>
-                </li>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #FF9872;">
+        <div class="container">
+          <% if user_signed_in? %>
+            <h1 class="", style="font-weight:bold;">
+              %= link_to "ひとたび", public_reviews_path, class: "navbar-brand" %>
+            </h1>
+            <span class="u h7 text-white strong">
+              ようこそ！<%= current_user.nickname %>さん！
+            </span>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <button type="button" class="btn btn-warning btn-sm", style="margin-right:30px">
+                  <%= link_to "レビューを投稿する", new_public_review_path, class: "nav-link" %>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="btn btn-warning btn-sm", style="margin-right:30px">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+                </button>
+              </li>
               </ul>
               <% elsif admin_signed_in? %>
-                <div class="navbar-header">
+                <h1 class="", style="font-weight:bold;">
                   <%= link_to "ひとたび", admin_users_path, class: "navbar-brand" %>
-                </div>
+                </h1>
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <div class="r-2">
@@ -51,9 +51,9 @@
                   </li>
                 </ul>
                 <% else %>
-                <div class="navbar-header">
+                <h1 class="", style="font-weight:bold;">
                   <%= link_to "ひとたび", root_path, class: "navbar-brand" %>
-                </div>
+                </h1>
                 <span class="u h7 text-white strong">
                   ようこそ! ひとたびへ
                 </span>
@@ -76,17 +76,17 @@
                     </button>
                   </li>
                 </ul>
-            <% end %>
-          </div>
-        </nav>
-      </header>
-      <%= yield %>
-      <footer class="text-muted">
-        <div class="container">
-          <p class="float-center">
-            ひとたび
-          </p>
+          <% end %>
         </div>
-      </footer>
-    </body>
+      </nav>
+    </header>
+    <%= yield %>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-center">
+          ひとたび
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>
