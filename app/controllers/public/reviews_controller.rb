@@ -37,7 +37,7 @@ class Public::ReviewsController < ApplicationController
       redirect_to public_reviews_path(@review.id)
       flash[:notice] = "投稿を完了しました"
     else
-      flash[:notice] = "必要情報を入力してください"
+      flash[:alert] = "必要情報を入力してください"
       render :new
     end
   end

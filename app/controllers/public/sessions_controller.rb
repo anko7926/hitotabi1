@@ -2,7 +2,9 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :validate_user, only: :create
+  before_action :validate_user, only: :create, unless: proc { params[:user][:email] == "" || params[:user][:password] == ""}
+
+  
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -14,6 +16,14 @@ class Public::SessionsController < Devise::SessionsController
     if user.members_status?
       redirect_to new_user_registration_path
     end
+  end
+  
+  # def exception
+  #   # byebug
+  #   params[:user][:email] == " " || params[:user][:password] == " "
+  # end
+  
+  # unless params[:user][:email] == " " || params[:user][:password] == " "
 
 
     #logger.debug '============================================'
@@ -21,7 +31,8 @@ class Public::SessionsController < Devise::SessionsController
     #logger.debug 'ここを通っています'
     #logger.debug user.inspect
     #logger.debug '============================================'
-  end
+  #end
+ 
 
   # GET /resource/sign_in
   # def new
