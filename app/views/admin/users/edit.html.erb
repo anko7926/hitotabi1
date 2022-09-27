@@ -20,9 +20,14 @@
           </div>
         <% end %>
       </div>
-      <div>
-        <%= f.submit "保存する",class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
-      </div>
+      
+      <% if @user.email != "guest@example.com" %>
+        <div>
+          <%= f.submit "保存する",class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
+        </div>
+      <% end %>
+      
+      
       <div>
         <%= link_to '投稿一覧', admin_user_path(@user), class: "btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
       </div>
