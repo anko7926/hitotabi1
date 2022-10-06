@@ -1,0 +1,32 @@
+ <% if @review.user == current_user %>
+        <td>
+          <%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}", remote: true %>
+        </td>
+      <% end %>
+      
+ <table>
+   <tbody>
+     <% @review.comments.each do |comment| %>
+       <tr>
+         <td>
+                <%= comment.user.nickname %>
+              </td>
+              <td class="", style="padding-left:50px;">
+                <%= comment.impression_comment %>
+              </td>
+              <td>
+                <% if comment.user == current_user %>
+                  <div id="comments-index">
+                    <%= link_to "Destroy", public_review_comment_path(@review, comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+</table>
+
+<%= form_with(model:[review, comment], url: public_review_comments_path(@review), remote: true) do |f| %>
+  <%= f.text_area :impression_comment, rows:'5',placeholder: "コメントをここに", class: "w-50 comment-textarea", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
+  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>
