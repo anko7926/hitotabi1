@@ -52,9 +52,10 @@
     </div>
   
     <h2 class="", style="font-weight:bold;">コメント一覧</h2>
-      
-      <div id="comment-<%= @review.id %>">
-        <%= render "public/comments/comment", review: @review, comment: @comment%>
+    
+      <div class="review-comments-comment">
+        <%= render "public/comments/comment", review: @review %>
       </div>
+        <%= render "public/comments/form", review: @review, comment: @comment%>
  </body>
 
