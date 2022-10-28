@@ -52,8 +52,12 @@
     </div>
   
     <h2 class="", style="font-weight:bold;">コメント一覧</h2>
-    
-      <div class="review-comments-comment">
+    <% if @review.user == current_user %>
+        <td>
+          <%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}", remote: true %>
+        </td>
+    <% end %>
+      <div id="review-comments-comment">
         <%= render "public/comments/comment", review: @review %>
       </div>
         <%= render "public/comments/form", review: @review, comment: @comment%>

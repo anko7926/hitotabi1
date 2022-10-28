@@ -1,8 +1,8 @@
 class Public::CommentsController < ApplicationController
    def create
-    review = Review.find(params[:review_id])
+    @review = Review.find(params[:review_id])
     @impression_comment = current_user.comments.new(review_comment_params)
-    @impression_comment.review_id = review.id
+    @impression_comment.review_id = @review.id
     @impression_comment.save
    end
 
