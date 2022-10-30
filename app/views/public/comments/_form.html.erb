@@ -1,4 +1,35 @@
-<%= form_with(model:[review, comment], url: public_review_comments_path(review), local: false) do |f| %>
+<%= form_with(model:[review, comment], url: review_comments_path(review), local: false) do |f| %>
   <%= f.text_area :impression_comment, rows:'5',placeholder: "コメントをここに", class: "w-50 comment-textarea", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
   <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

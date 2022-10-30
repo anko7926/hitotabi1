@@ -1,6 +1,6 @@
 <div class="container">
-    <h4 class="text-center", style="background-color:#eee; width:150px; margin:30px 0 30px 100px;">レビュー登録</h4>
-    <%= form_with model: @review, url: public_reviews_path, method: :post, local: true  do |f| %>
+  <h4 class="text-center", style="background-color:#eee; width:150px; margin:30px 0 30px 100px;">レビュー登録</h4>
+  <%= form_with model: @review, url: reviews_path, method: :post, local: true  do |f| %>
 
     <%= render "public/shared/error_messages", resource: @review %>
     <div class="row">
@@ -21,10 +21,8 @@
         <div class="form-group row" id="star">
           <%= f.label :evaluation,'評価 ', class:'col-md-3 col-form-label' %>
           <div id="evaluation"></div>
-          <%#= f.hidden_field :evaluation, id: :review_evaluation %>
         </div>
 
-        <!-- 評価javascript -->
         <script>
           $('#evaluation').raty({
           size     : 36,
@@ -46,7 +44,7 @@
             <%= f.hidden_field :id, :value => @review.id %>
             <%= f.submit "新規登録",class:"btn btn-success", style:"font-weight:bold; padding:5px 20px; margin:20px 20px 0 220px;" %>
           </div>
-        </div>
       </div>
-    <% end %>
+    </div>
+  <% end %>
 </div>

@@ -1,13 +1,11 @@
-<body>
-  <%= link_to 'Topページへ戻る', public_reviews_path %>
+<%= link_to 'Topページへ戻る', reviews_path %>
 
-  <h2>タグ名</h2>
-  <ul>
-    <% @tags.each do |tag| %>
-      <li>
-        <%# タグの名前と、関連付く記事数を表示 %>
-        <%= link_to "#{tag.tag_name} ( Reviews: #{tag.reviews.count} )", public_tag_path(tag) %>
-      </li>
-    <% end %>
-  </ul>
-</body>
+<h2>タグ名</h2>
+<ul>
+  <% @tags.each do |tag| %>
+    <li>
+      <%# タグの名前と、関連付く記事数を表示 %>
+      <%= link_to "#{tag.tag_name} ( Reviews: #{tag.reviews.count} )", tag_path(tag) %>
+    </li>
+  <% end %>
+</ul>

@@ -1,21 +1,20 @@
 <%= render 'layouts/flash' %>
 
-<body>
   <h2 class="", style="font-weight:bold;">検索</h2>
-  <%= search_form_for @q, url: search_public_reviews_path do |f| %>
+  <%= search_form_for @q, url: search_reviews_path do |f| %>
     <%= f.text_field :title_or_travel_comment_cont, class: "search-form", placeholder: "キーワード検索" %>
     <%= f.submit "検索", class: "search-btn" %>
   <% end %>
   
   <span class="r-2">
     <button type="button" class="btn btn btn-outline-info btn-sm", style="margin-bottom:100px; margin-left:300px;">
-      <%= link_to 'タグ一覧', public_tags_path, class: "nav-link" %>
+      <%= link_to 'タグ一覧', tags_path, class: "nav-link" %>
     </button>
   </span>
     
   <span class="r-2">
     <button type="button" class="btn btn btn-outline-info btn-sm", style="margin-bottom:100px; margin-left:80px;">
-      <%= link_to "いいねした投稿を見る", public_user_likes_path(current_user), class: "nav-link" %>
+      <%= link_to "いいねした投稿を見る", user_likes_path(current_user), class: "nav-link" %>
     </button>
   </span>
 
@@ -26,7 +25,7 @@
         <% @reviews.each do |review| %>
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-              <%= link_to public_review_path(review), class:"text-dark"  do %>
+              <%= link_to review_path(review), class:"text-dark"  do %>
                 <div class="card-deck">
                   <div class="card">
                     <%= image_tag review.image, size:"345x200" %>
@@ -56,6 +55,5 @@
      </div>
     </div>
   </div>
-</body>
 
 

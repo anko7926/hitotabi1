@@ -1,14 +1,20 @@
-<body>
   <button type="button" class="btn btn btn-outline-info btn-sm", style="margin-top:30px; margin-left:150px;">
-    <%= link_to 'Topページへ', public_reviews_path, class: "nav-link" %>
+    <%= link_to 'Topページへ', reviews_path, class: "nav-link" %>
   </button>
+  
+  <% if @review.user == current_user %>
+    <button type="button" class="btn btn-outline-danger", style="margin-top:30px; margin-left:150px;">
+      <%= link_to "投稿を削除する", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </button>
+  <% end %>
+  
   <h3 class="", style="margin-top:50px; margin-left:150px;">タグ名</h3>
   <ul>
     <%# 該当のPostからアソシエーションでタグを取得 %>
     <% @review.tags.each do |tag| %>
       <%# タグを展開 %>
       <li class="", style="margin-top:50px; margin-left:150px;">
-        <%= link_to tag.tag_name, public_tag_path(tag) %>
+        <%= link_to tag.tag_name, tag_path(tag) %>
       </li>
     <% end %>
   </ul>
@@ -18,7 +24,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-10", style= "margin-left:90px;">
-            <%= link_to public_review_path(@review), class:"text-dark"  do %>
+            <%= link_to edit_review_path(@review), class:"text-dark"  do %>
               <div class="card-deck">
                 <div class="card">
                   <%= image_tag @review.image, size:"920x500" %>
@@ -52,14 +58,9 @@
     </div>
   
     <h2 class="", style="font-weight:bold;">コメント一覧</h2>
-    <% if @review.user == current_user %>
-        <td>
-          <%= link_to '編集する', edit_public_review_path(@review), class: "btn btn-sm btn-success edit_book_#{@review.id}", remote: true %>
-        </td>
-    <% end %>
+    
       <div id="review-comments-comment">
         <%= render "public/comments/comment", review: @review %>
       </div>
         <%= render "public/comments/form", review: @review, comment: @comment%>
- </body>
 

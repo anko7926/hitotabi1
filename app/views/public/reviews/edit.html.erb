@@ -1,7 +1,7 @@
-<body>
+
   <div class="container">
     <h4 class="text-center", style="background-color:#eee; width:150px; margin:30px 0 30px 100px;">レビュー編集</h4>
-      <%= form_with model: @review, url: public_review_path(@review.id), method: :patch, local: true  do |f| %>
+      <%= form_with model: @review, url: review_path(@review.id), method: :patch, local: true  do |f| %>
 
         <%= render "public/shared/error_messages", resource: @review %>
         <div class="row">
@@ -36,7 +36,7 @@
               });
             </script>
 
-            <%= form_with model: @review, url: public_reviews_path(@review), method: :patch, local: true  do |f| %>
+            <%= form_with model: @review, url: reviews_path(@review), method: :patch, local: true  do |f| %>
               <%= f.label :tag_name, 'タグ名' %><br>
               <%# Edit用に@post.tags.pluck(:name)でタグの配列を取得 %>
               <%= f.text_field :tag_name, value: @review.tags.pluck(:tag_name) %><br>
@@ -49,4 +49,3 @@
         </div>
       <% end %>
   </div>
-</body>

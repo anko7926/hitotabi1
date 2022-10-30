@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 root to: "public/homes#top"
 
-namespace :public do
+scope module: :public do
   devise_scope :user do
     post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
   end
