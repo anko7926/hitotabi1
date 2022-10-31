@@ -1,6 +1,7 @@
 class Public::ReviewsController < ApplicationController
     before_action :set_q, only: [:index, :search]
     before_action :set_user, only: [:likes]
+    before_action :authenticate_user!
     protect_from_forgery
 
   def index
@@ -43,6 +44,11 @@ class Public::ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    if @review.user == current_user
+      render "edit"
+    else
+      redirect_to review_path (@review)
+    end
   end
 
    def update

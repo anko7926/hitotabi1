@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+ 
+  .thumb-345-200{
+    width: 345px;
+    height: 200px;
+    object-fit: cover;
+   }
+   
+   .thumb-150-100{
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+   }
+   
+   .image-920-500{
+     width: 920px;
+	 height: 500px;
+	 object-fit: contain;
+   }
+   
