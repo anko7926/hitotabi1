@@ -33,6 +33,6 @@
           <%= f.label :コメント一覧, style:"margin-right:86px;" %>
             <%= comment.impression_comment %>
         </div>
-        <%= link_to "コメント削除", public_review_comment_path(@review, comment), method: :delete, class: "btn btn-danger pull-right" %>
+        <%= link_to "コメント削除", review_comment_path(@review, comment), method: :delete, class: "btn btn-danger pull-right" %>
       <% end %>
     <% end %>
